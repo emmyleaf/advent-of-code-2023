@@ -13,7 +13,7 @@ lazy_static! {
 
 fn parse_first_digit<I: Iterator<Item = char>>(mut chars: I) -> u32 {
     chars
-        .find(|c| c.is_ascii_digit())
+        .find(char::is_ascii_digit)
         .and_then(|c| c.to_digit(10))
         .unwrap()
 }
@@ -79,6 +79,7 @@ mod tests {
     use super::*;
     use anyhow::{Ok, Result};
     use indoc::indoc;
+    use pretty_assertions::assert_eq;
     use std::{fs::read_to_string, path::Path};
 
     #[test]
