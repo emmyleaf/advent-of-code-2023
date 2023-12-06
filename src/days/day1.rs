@@ -37,8 +37,7 @@ fn match_to_digit(the_match: Match) -> Option<u32> {
         "seven" => Some(7),
         "eight" => Some(8),
         "nine" => Some(9),
-        x if !x.is_empty()
-            && let c = x.chars().next().unwrap()
+        x if let c = x.chars().next().unwrap()
             && c.is_ascii_digit() =>
         {
             c.to_digit(10)
