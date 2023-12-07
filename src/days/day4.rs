@@ -1,18 +1,20 @@
 use rayon::prelude::*;
-use std::collections::HashSet;
+use std::{collections::HashSet, result::Result};
 
 fn parse_number_set(input: &str) -> HashSet<u32> {
-    input
-        .split_ascii_whitespace()
-        .map(|s| s.parse().unwrap())
-        .collect()
+    let split = input.split_ascii_whitespace();
+    split.map(str::parse).map(Result::unwrap).collect()
 }
 
-fn calculate_card_score(input: &str) -> u32 {
+fn parse_number_sets(input: &str) -> (HashSet<u32>, HashSet<u32>) {
     let mut parts = input.split([':', '|']);
     let winning_numbers = parse_number_set(parts.nth(1).unwrap());
     let card_numbers = parse_number_set(parts.next().unwrap());
+    (winning_numbers, card_numbers)
+}
 
+fn calculate_card_score(input: &str) -> u32 {
+    let (winning_numbers, card_numbers) = parse_number_sets(input);
     card_numbers
         .into_iter()
         .filter(|x| winning_numbers.contains(x))
@@ -22,12 +24,33 @@ fn calculate_card_score(input: &str) -> u32 {
         })
 }
 
+fn count_win_amount(input: &str) -> usize {
+    let (winning_numbers, card_numbers) = parse_number_sets(input);
+    card_numbers
+        .into_iter()
+        .filter(|x| winning_numbers.contains(x))
+        .count()
+}
+
 pub fn day4_star1(input: &str) -> u32 {
     input
         .split('\n')
         .par_bridge()
         .map(calculate_card_score)
         .sum()
+}
+
+pub fn day4_star2(input: &str) -> u32 {
+    let cards: Vec<&str> = input.split('\n').collect();
+    let mut card_amounts: Vec<u32> = vec![1; cards.len()];
+    for (i, card) in cards.iter().enumerate() {
+        let win_amount = count_win_amount(card);
+        let added_amount = card_amounts[i];
+        for card_amount in card_amounts.iter_mut().take(i + win_amount + 1).skip(i + 1) {
+            *card_amount += added_amount;
+        }
+    }
+    card_amounts.into_iter().sum()
 }
 
 #[cfg(test)]
@@ -57,5 +80,18 @@ mod tests {
         let file = read_to_string(Path::new("inputs/day4.txt"))?;
         let actual = day4_star1(&file);
         Ok(assert_eq!(actual, 21213))
+    }
+
+    #[test]
+    fn day4_star2_example() {
+        let actual = day4_star2(EXAMPLE_INPUT);
+        assert_eq!(actual, 30);
+    }
+
+    #[test]
+    fn day4_star2_final_answer() -> Result<()> {
+        let file = read_to_string(Path::new("inputs/day4.txt"))?;
+        let actual = day4_star2(&file);
+        Ok(assert_eq!(actual, 8_549_735))
     }
 }
