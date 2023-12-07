@@ -1,15 +1,11 @@
+use crate::common::parsing::parse_u32_set;
 use rayon::prelude::*;
-use std::{collections::HashSet, result::Result};
-
-fn parse_number_set(input: &str) -> HashSet<u32> {
-    let split = input.split_ascii_whitespace();
-    split.map(str::parse).map(Result::unwrap).collect()
-}
+use std::collections::HashSet;
 
 fn parse_number_sets(input: &str) -> (HashSet<u32>, HashSet<u32>) {
     let mut parts = input.split([':', '|']);
-    let winning_numbers = parse_number_set(parts.nth(1).unwrap());
-    let card_numbers = parse_number_set(parts.next().unwrap());
+    let winning_numbers = parse_u32_set(parts.nth(1).unwrap());
+    let card_numbers = parse_u32_set(parts.next().unwrap());
     (winning_numbers, card_numbers)
 }
 

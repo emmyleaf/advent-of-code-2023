@@ -2,6 +2,7 @@
 #![warn(clippy::all, clippy::pedantic, clippy::nursery)]
 #![allow(dead_code, clippy::module_name_repetitions)]
 
+mod common;
 mod days;
 
 fn main() {
