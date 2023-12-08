@@ -89,8 +89,8 @@ pub fn day5_star1(input: &str) -> u64 {
     let maps = parse_all_maps(&mut lines);
 
     seeds
-        .iter()
-        .map(|seed| apply_maps(*seed, &maps))
+        .into_par_iter()
+        .map(|seed| apply_maps(seed, &maps))
         .min()
         .unwrap()
 }

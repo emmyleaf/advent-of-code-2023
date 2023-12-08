@@ -29,15 +29,11 @@ fn count_win_amount(input: &str) -> usize {
 }
 
 pub fn day4_star1(input: &str) -> u32 {
-    input
-        .split('\n')
-        .par_bridge()
-        .map(calculate_card_score)
-        .sum()
+    input.par_lines().map(calculate_card_score).sum()
 }
 
 pub fn day4_star2(input: &str) -> u32 {
-    let cards: Vec<&str> = input.split('\n').collect();
+    let cards: Vec<&str> = input.lines().collect();
     let mut card_amounts: Vec<u32> = vec![1; cards.len()];
     for (i, card) in cards.iter().enumerate() {
         let win_amount = count_win_amount(card);

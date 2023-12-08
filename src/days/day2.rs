@@ -42,19 +42,11 @@ fn calculate_game_power(input: &str) -> u32 {
 }
 
 pub fn day2_star1(input: &str) -> u32 {
-    input
-        .split('\n')
-        .par_bridge()
-        .filter_map(get_possible_game_id)
-        .sum()
+    input.par_lines().filter_map(get_possible_game_id).sum()
 }
 
 pub fn day2_star2(input: &str) -> u32 {
-    input
-        .split('\n')
-        .par_bridge()
-        .map(calculate_game_power)
-        .sum()
+    input.par_lines().map(calculate_game_power).sum()
 }
 
 #[cfg(test)]

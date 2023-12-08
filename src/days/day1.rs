@@ -59,16 +59,14 @@ fn parse_calibration_line_words_and_digits(input: &str) -> u32 {
 
 pub fn day1_star1(input: &str) -> u32 {
     input
-        .split_whitespace()
-        .par_bridge()
+        .par_split_whitespace()
         .map(parse_calibration_line_digits_only)
         .sum()
 }
 
 pub fn day1_star2(input: &str) -> u32 {
     input
-        .split_whitespace()
-        .par_bridge()
+        .par_split_whitespace()
         .map(parse_calibration_line_words_and_digits)
         .sum()
 }
