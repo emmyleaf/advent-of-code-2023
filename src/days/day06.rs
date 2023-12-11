@@ -9,14 +9,14 @@ fn calculate_winning_amount((time, distance): (f64, f64)) -> u64 {
     (root2 - root1) as u64 - 1
 }
 
-pub fn day6_star1(input: &str) -> u64 {
+pub fn day06_star1(input: &str) -> u64 {
     let mut lines = input.lines();
     let times = parse_f64_iter(&lines.next().unwrap()[11..]);
     let distances = parse_f64_iter(&lines.next().unwrap()[11..]);
     times.zip(distances).map(calculate_winning_amount).product()
 }
 
-pub fn day6_star2(input: &str) -> u64 {
+pub fn day06_star2(input: &str) -> u64 {
     let mut lines = input.lines();
     let time = parse_f64_with_spaces(&lines.next().unwrap()[11..]);
     let distance = parse_f64_with_spaces(&lines.next().unwrap()[11..]);
@@ -36,28 +36,28 @@ mod tests {
         Distance:  9  40  200"};
 
     #[test]
-    fn day6_star1_example() {
-        let actual = day6_star1(EXAMPLE_INPUT);
+    fn day06_star1_example() {
+        let actual = day06_star1(EXAMPLE_INPUT);
         assert_eq!(actual, 288);
     }
 
     #[test]
-    fn day6_star1_final_answer() -> Result<()> {
-        let file = read_to_string(Path::new("inputs/day6.txt"))?;
-        let actual = day6_star1(&file);
+    fn day06_star1_final_answer() -> Result<()> {
+        let file = read_to_string(Path::new("inputs/day06.txt"))?;
+        let actual = day06_star1(&file);
         Ok(assert_eq!(actual, 2_065_338))
     }
 
     #[test]
-    fn day6_star2_example() {
-        let actual = day6_star2(EXAMPLE_INPUT);
+    fn day06_star2_example() {
+        let actual = day06_star2(EXAMPLE_INPUT);
         assert_eq!(actual, 71503);
     }
 
     #[test]
-    fn day6_star2_final_answer() -> Result<()> {
-        let file = read_to_string(Path::new("inputs/day6.txt"))?;
-        let actual = day6_star2(&file);
+    fn day06_star2_final_answer() -> Result<()> {
+        let file = read_to_string(Path::new("inputs/day06.txt"))?;
+        let actual = day06_star2(&file);
         Ok(assert_eq!(actual, 34_934_171))
     }
 }

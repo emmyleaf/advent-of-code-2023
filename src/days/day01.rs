@@ -57,14 +57,14 @@ fn parse_calibration_line_words_and_digits(input: &str) -> u32 {
     first_digit * 10 + last_digit
 }
 
-pub fn day1_star1(input: &str) -> u32 {
+pub fn day01_star1(input: &str) -> u32 {
     input
         .par_split_whitespace()
         .map(parse_calibration_line_digits_only)
         .sum()
 }
 
-pub fn day1_star2(input: &str) -> u32 {
+pub fn day01_star2(input: &str) -> u32 {
     input
         .par_split_whitespace()
         .map(parse_calibration_line_words_and_digits)
@@ -80,25 +80,25 @@ mod tests {
     use std::{fs::read_to_string, path::Path};
 
     #[test]
-    fn day1_star1_example() {
+    fn day01_star1_example() {
         let input = indoc! {"
             1abc2
             pqr3stu8vwx
             a1b2c3d4e5f
             treb7uchet"};
-        let actual = day1_star1(input);
+        let actual = day01_star1(input);
         assert_eq!(actual, 142);
     }
 
     #[test]
-    fn day1_star1_final_answer() -> Result<()> {
-        let file = read_to_string(Path::new("inputs/day1.txt"))?;
-        let actual = day1_star1(&file);
+    fn day01_star1_final_answer() -> Result<()> {
+        let file = read_to_string(Path::new("inputs/day01.txt"))?;
+        let actual = day01_star1(&file);
         Ok(assert_eq!(actual, 54239))
     }
 
     #[test]
-    fn day1_star2_example() {
+    fn day01_star2_example() {
         let input = indoc! {"
             two1nine
             eightwothree
@@ -107,14 +107,14 @@ mod tests {
             4nineeightseven2
             zoneight234
             7pqrstsixteen"};
-        let actual = day1_star2(input);
+        let actual = day01_star2(input);
         assert_eq!(actual, 281);
     }
 
     #[test]
-    fn day1_star2_final_answer() -> Result<()> {
-        let file = read_to_string(Path::new("inputs/day1.txt"))?;
-        let actual = day1_star2(&file);
+    fn day01_star2_final_answer() -> Result<()> {
+        let file = read_to_string(Path::new("inputs/day01.txt"))?;
+        let actual = day01_star2(&file);
         Ok(assert_eq!(actual, 55343))
     }
 }

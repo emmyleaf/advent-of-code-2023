@@ -79,11 +79,11 @@ fn calculate_total_winnings(input: &str, jokers: bool) -> u64 {
         .fold(0, |acc, (i, (_, bid))| acc + bid * (i as u64 + 1))
 }
 
-pub fn day7_star1(input: &str) -> u64 {
+pub fn day07_star1(input: &str) -> u64 {
     calculate_total_winnings(input, false)
 }
 
-pub fn day7_star2(input: &str) -> u64 {
+pub fn day07_star2(input: &str) -> u64 {
     calculate_total_winnings(input, true)
 }
 
@@ -103,28 +103,28 @@ mod tests {
         QQQJA 483"};
 
     #[test]
-    fn day7_star1_example() {
-        let actual = day7_star1(EXAMPLE_INPUT);
+    fn day07_star1_example() {
+        let actual = day07_star1(EXAMPLE_INPUT);
         assert_eq!(actual, 6440);
     }
 
     #[test]
-    fn day7_star1_final_answer() -> Result<()> {
-        let file = read_to_string(Path::new("inputs/day7.txt"))?;
-        let actual = day7_star1(&file);
+    fn day07_star1_final_answer() -> Result<()> {
+        let file = read_to_string(Path::new("inputs/day07.txt"))?;
+        let actual = day07_star1(&file);
         Ok(assert_eq!(actual, 246_163_188))
     }
 
     #[test]
-    fn day7_star2_example() {
-        let actual = day7_star2(EXAMPLE_INPUT);
+    fn day07_star2_example() {
+        let actual = day07_star2(EXAMPLE_INPUT);
         assert_eq!(actual, 5905);
     }
 
     #[test]
-    fn day7_star2_final_answer() -> Result<()> {
-        let file = read_to_string(Path::new("inputs/day7.txt"))?;
-        let actual = day7_star2(&file);
+    fn day07_star2_final_answer() -> Result<()> {
+        let file = read_to_string(Path::new("inputs/day07.txt"))?;
+        let actual = day07_star2(&file);
         Ok(assert_eq!(actual, 245_794_069))
     }
 }

@@ -28,11 +28,11 @@ fn count_win_amount(input: &str) -> usize {
         .count()
 }
 
-pub fn day4_star1(input: &str) -> u32 {
+pub fn day04_star1(input: &str) -> u32 {
     input.par_lines().map(calculate_card_score).sum()
 }
 
-pub fn day4_star2(input: &str) -> u32 {
+pub fn day04_star2(input: &str) -> u32 {
     let cards: Vec<&str> = input.lines().collect();
     let mut card_amounts: Vec<u32> = vec![1; cards.len()];
     for (i, card) in cards.iter().enumerate() {
@@ -62,28 +62,28 @@ mod tests {
         Card 6: 31 18 13 56 72 | 74 77 10 23 35 67 36 11"};
 
     #[test]
-    fn day4_star1_example() {
-        let actual = day4_star1(EXAMPLE_INPUT);
+    fn day04_star1_example() {
+        let actual = day04_star1(EXAMPLE_INPUT);
         assert_eq!(actual, 13);
     }
 
     #[test]
-    fn day4_star1_final_answer() -> Result<()> {
-        let file = read_to_string(Path::new("inputs/day4.txt"))?;
-        let actual = day4_star1(&file);
+    fn day04_star1_final_answer() -> Result<()> {
+        let file = read_to_string(Path::new("inputs/day04.txt"))?;
+        let actual = day04_star1(&file);
         Ok(assert_eq!(actual, 21213))
     }
 
     #[test]
-    fn day4_star2_example() {
-        let actual = day4_star2(EXAMPLE_INPUT);
+    fn day04_star2_example() {
+        let actual = day04_star2(EXAMPLE_INPUT);
         assert_eq!(actual, 30);
     }
 
     #[test]
-    fn day4_star2_final_answer() -> Result<()> {
-        let file = read_to_string(Path::new("inputs/day4.txt"))?;
-        let actual = day4_star2(&file);
+    fn day04_star2_final_answer() -> Result<()> {
+        let file = read_to_string(Path::new("inputs/day04.txt"))?;
+        let actual = day04_star2(&file);
         Ok(assert_eq!(actual, 8_549_735))
     }
 }

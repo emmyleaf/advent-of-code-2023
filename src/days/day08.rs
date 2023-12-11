@@ -23,12 +23,12 @@ fn count_steps(choices: &str, nodes: &HashMap<&str, (&str, &str)>, starting_node
     steps as u64
 }
 
-pub fn day8_star1(input: &str) -> u64 {
+pub fn day08_star1(input: &str) -> u64 {
     let (choices, nodes) = parse_input(input);
     count_steps(choices, &nodes, "AAA")
 }
 
-pub fn day8_star2(input: &str) -> u64 {
+pub fn day08_star2(input: &str) -> u64 {
     let (choices, nodes) = parse_input(input);
     nodes
         .keys()
@@ -58,38 +58,38 @@ mod tests {
         ZZZ = (ZZZ, ZZZ)"};
 
     #[test]
-    fn day8_star1_example1() {
-        let actual = day8_star1(EXAMPLE_INPUT);
+    fn day08_star1_example1() {
+        let actual = day08_star1(EXAMPLE_INPUT);
         assert_eq!(actual, 2);
     }
 
     #[test]
-    fn day8_star1_example2() {
+    fn day08_star1_example2() {
         let input = indoc! {"
             LLR
 
             AAA = (BBB, BBB)
             BBB = (AAA, ZZZ)
             ZZZ = (ZZZ, ZZZ)"};
-        let actual = day8_star1(input);
+        let actual = day08_star1(input);
         assert_eq!(actual, 6);
     }
 
     #[test]
-    fn day8_star1_final_answer() -> Result<()> {
-        let file = read_to_string(Path::new("inputs/day8.txt"))?;
-        let actual = day8_star1(&file);
+    fn day08_star1_final_answer() -> Result<()> {
+        let file = read_to_string(Path::new("inputs/day08.txt"))?;
+        let actual = day08_star1(&file);
         Ok(assert_eq!(actual, 13301))
     }
 
     #[test]
-    fn day8_star2_example1() {
-        let actual = day8_star2(EXAMPLE_INPUT);
+    fn day08_star2_example1() {
+        let actual = day08_star2(EXAMPLE_INPUT);
         assert_eq!(actual, 2);
     }
 
     #[test]
-    fn day8_star2_example2() {
+    fn day08_star2_example2() {
         let input = indoc! {"
             LR
 
@@ -101,14 +101,14 @@ mod tests {
             22C = (22Z, 22Z)
             22Z = (22B, 22B)
             XXX = (XXX, XXX)"};
-        let actual = day8_star2(input);
+        let actual = day08_star2(input);
         assert_eq!(actual, 6);
     }
 
     #[test]
-    fn day8_star2_final_answer() -> Result<()> {
-        let file = read_to_string(Path::new("inputs/day8.txt"))?;
-        let actual = day8_star2(&file);
+    fn day08_star2_final_answer() -> Result<()> {
+        let file = read_to_string(Path::new("inputs/day08.txt"))?;
+        let actual = day08_star2(&file);
         Ok(assert_eq!(actual, 7_309_459_565_207))
     }
 }

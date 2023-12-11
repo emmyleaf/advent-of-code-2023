@@ -20,7 +20,7 @@ fn calculate_prev_in_sequence(sequence: &[i64]) -> i64 {
     }
 }
 
-pub fn day9_star1(input: &str) -> i64 {
+pub fn day09_star1(input: &str) -> i64 {
     input
         .par_lines()
         .map(parse_i64_vec)
@@ -28,7 +28,7 @@ pub fn day9_star1(input: &str) -> i64 {
         .sum()
 }
 
-pub fn day9_star2(input: &str) -> i64 {
+pub fn day09_star2(input: &str) -> i64 {
     input
         .par_lines()
         .map(parse_i64_vec)
@@ -50,28 +50,28 @@ mod tests {
         10 13 16 21 30 45"};
 
     #[test]
-    fn day9_star1_example() {
-        let actual = day9_star1(EXAMPLE_INPUT);
+    fn day09_star1_example() {
+        let actual = day09_star1(EXAMPLE_INPUT);
         assert_eq!(actual, 114);
     }
 
     #[test]
-    fn day9_star1_final_answer() -> Result<()> {
-        let file = read_to_string(Path::new("inputs/day9.txt"))?;
-        let actual = day9_star1(&file);
+    fn day09_star1_final_answer() -> Result<()> {
+        let file = read_to_string(Path::new("inputs/day09.txt"))?;
+        let actual = day09_star1(&file);
         Ok(assert_eq!(actual, 1_887_980_197))
     }
 
     #[test]
-    fn day9_star2_example() {
-        let actual = day9_star2(EXAMPLE_INPUT);
+    fn day09_star2_example() {
+        let actual = day09_star2(EXAMPLE_INPUT);
         assert_eq!(actual, 2);
     }
 
     #[test]
-    fn day9_star2_final_answer() -> Result<()> {
-        let file = read_to_string(Path::new("inputs/day9.txt"))?;
-        let actual = day9_star2(&file);
+    fn day09_star2_final_answer() -> Result<()> {
+        let file = read_to_string(Path::new("inputs/day09.txt"))?;
+        let actual = day09_star2(&file);
         Ok(assert_eq!(actual, 990))
     }
 }

@@ -78,11 +78,11 @@ fn find_gear_ratio_sum(bytes: &[u8]) -> u32 {
     ratio_sum
 }
 
-pub fn day3_star1(input: &str) -> u32 {
+pub fn day03_star1(input: &str) -> u32 {
     find_engine_part_sum(&input.bytes().collect::<Vec<u8>>())
 }
 
-pub fn day3_star2(input: &str) -> u32 {
+pub fn day03_star2(input: &str) -> u32 {
     find_gear_ratio_sum(&input.bytes().collect::<Vec<u8>>())
 }
 
@@ -107,28 +107,28 @@ mod tests {
         .664.598.."};
 
     #[test]
-    fn day3_star1_example() {
-        let actual = day3_star1(EXAMPLE_INPUT);
+    fn day03_star1_example() {
+        let actual = day03_star1(EXAMPLE_INPUT);
         assert_eq!(actual, 4361);
     }
 
     #[test]
-    fn day3_star1_final_answer() -> Result<()> {
-        let file = read_to_string(Path::new("inputs/day3.txt"))?;
-        let actual = day3_star1(&file);
+    fn day03_star1_final_answer() -> Result<()> {
+        let file = read_to_string(Path::new("inputs/day03.txt"))?;
+        let actual = day03_star1(&file);
         Ok(assert_eq!(actual, 553_079))
     }
 
     #[test]
-    fn day3_star2_example() {
-        let actual = day3_star2(EXAMPLE_INPUT);
+    fn day03_star2_example() {
+        let actual = day03_star2(EXAMPLE_INPUT);
         assert_eq!(actual, 467_835);
     }
 
     #[test]
-    fn day3_star2_final_answer() -> Result<()> {
-        let file = read_to_string(Path::new("inputs/day3.txt"))?;
-        let actual = day3_star2(&file);
+    fn day03_star2_final_answer() -> Result<()> {
+        let file = read_to_string(Path::new("inputs/day03.txt"))?;
+        let actual = day03_star2(&file);
         Ok(assert_eq!(actual, 84_363_105))
     }
 }

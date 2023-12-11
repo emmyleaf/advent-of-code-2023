@@ -41,11 +41,11 @@ fn calculate_game_power(input: &str) -> u32 {
     rgb.0 * rgb.1 * rgb.2
 }
 
-pub fn day2_star1(input: &str) -> u32 {
+pub fn day02_star1(input: &str) -> u32 {
     input.par_lines().filter_map(get_possible_game_id).sum()
 }
 
-pub fn day2_star2(input: &str) -> u32 {
+pub fn day02_star2(input: &str) -> u32 {
     input.par_lines().map(calculate_game_power).sum()
 }
 
@@ -65,28 +65,28 @@ mod tests {
         Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green"};
 
     #[test]
-    fn day2_star1_example() {
-        let actual = day2_star1(EXAMPLE_INPUT);
+    fn day02_star1_example() {
+        let actual = day02_star1(EXAMPLE_INPUT);
         assert_eq!(actual, 8);
     }
 
     #[test]
-    fn day2_star1_final_answer() -> Result<()> {
-        let file = read_to_string(Path::new("inputs/day2.txt"))?;
-        let actual = day2_star1(&file);
+    fn day02_star1_final_answer() -> Result<()> {
+        let file = read_to_string(Path::new("inputs/day02.txt"))?;
+        let actual = day02_star1(&file);
         Ok(assert_eq!(actual, 2449))
     }
 
     #[test]
-    fn day2_star2_example() {
-        let actual = day2_star2(EXAMPLE_INPUT);
+    fn day02_star2_example() {
+        let actual = day02_star2(EXAMPLE_INPUT);
         assert_eq!(actual, 2286);
     }
 
     #[test]
-    fn day2_star2_final_answer() -> Result<()> {
-        let file = read_to_string(Path::new("inputs/day2.txt"))?;
-        let actual = day2_star2(&file);
+    fn day02_star2_final_answer() -> Result<()> {
+        let file = read_to_string(Path::new("inputs/day02.txt"))?;
+        let actual = day02_star2(&file);
         Ok(assert_eq!(actual, 63981))
     }
 }

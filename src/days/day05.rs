@@ -82,7 +82,7 @@ fn apply_maps_inverse(number: u64, maps: &[Map]) -> u64 {
     maps.iter().fold(number, |n, map| map.transform_inverse(n))
 }
 
-pub fn day5_star1(input: &str) -> u64 {
+pub fn day05_star1(input: &str) -> u64 {
     let mut lines = input.lines();
     let seeds = parse_seeds_individual(&mut lines);
     lines.next(); // consume the first blank line
@@ -95,7 +95,7 @@ pub fn day5_star1(input: &str) -> u64 {
         .unwrap()
 }
 
-pub fn day5_star2(input: &str) -> u64 {
+pub fn day05_star2(input: &str) -> u64 {
     let mut lines = input.lines();
     let seed_ranges = parse_seed_ranges(&mut lines);
     lines.next(); // consume the first blank line
@@ -156,28 +156,28 @@ mod tests {
         56 93 4"};
 
     #[test]
-    fn day5_star1_example() {
-        let actual = day5_star1(EXAMPLE_INPUT);
+    fn day05_star1_example() {
+        let actual = day05_star1(EXAMPLE_INPUT);
         assert_eq!(actual, 35);
     }
 
     #[test]
-    fn day5_star1_final_answer() -> Result<()> {
-        let file = read_to_string(Path::new("inputs/day5.txt"))?;
-        let actual = day5_star1(&file);
+    fn day05_star1_final_answer() -> Result<()> {
+        let file = read_to_string(Path::new("inputs/day05.txt"))?;
+        let actual = day05_star1(&file);
         Ok(assert_eq!(actual, 910_845_529))
     }
 
     #[test]
-    fn day5_star2_example() {
-        let actual = day5_star2(EXAMPLE_INPUT);
+    fn day05_star2_example() {
+        let actual = day05_star2(EXAMPLE_INPUT);
         assert_eq!(actual, 46);
     }
 
     #[test]
-    fn day5_star2_final_answer() -> Result<()> {
-        let file = read_to_string(Path::new("inputs/day5.txt"))?;
-        let actual = day5_star2(&file);
+    fn day05_star2_final_answer() -> Result<()> {
+        let file = read_to_string(Path::new("inputs/day05.txt"))?;
+        let actual = day05_star2(&file);
         Ok(assert_eq!(actual, 77_435_348))
     }
 }
