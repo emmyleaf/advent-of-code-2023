@@ -13,15 +13,12 @@ fn parse_input(input: &str) -> (&str, HashMap<&str, (&str, &str)>) {
 fn count_steps(choices: &str, nodes: &HashMap<&str, (&str, &str)>, starting_node: &str) -> u64 {
     let mut current_node = starting_node;
     let mut steps = 0;
-    let mut choices_iter = choices.bytes();
+    let mut choices_iter = choices.bytes().cycle();
     while !current_node.ends_with('Z') {
         let choice = choices_iter.next().unwrap();
         let options = nodes[current_node];
         current_node = if choice == b'L' { options.0 } else { options.1 };
         steps += 1;
-        if steps % choices.len() == 0 {
-            choices_iter = choices.bytes();
-        }
     }
     steps as u64
 }
