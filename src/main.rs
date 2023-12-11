@@ -1,4 +1,4 @@
-#![feature(if_let_guard, let_chains, isqrt)]
+#![feature(if_let_guard, let_chains, iter_map_windows)]
 #![warn(clippy::all, clippy::pedantic, clippy::nursery)]
 #![allow(
     dead_code,
