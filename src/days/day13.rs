@@ -1,19 +1,21 @@
 use itertools::Itertools;
 
-fn calculate_reflections(grid: &[&[u8]]) -> usize {
+fn calculate_reflections(grid: &[&[u8]], allowed_differences: usize) -> usize {
     let width = grid[0].len();
     let height = grid.len();
 
     // Check horizontal line reflection!
     for y in 0..(height - 1) {
-        let mut rows_equal = true;
+        let mut rows_differences = 0;
         for x in 0..width {
             if grid[y][x] != grid[y + 1][x] {
-                rows_equal = false;
-                break;
+                rows_differences += 1;
+                if rows_differences > allowed_differences {
+                    break;
+                }
             }
         }
-        if rows_equal {
+        if rows_differences <= allowed_differences {
             for offset in 1..=y {
                 let lower = y - offset;
                 let upper = y + 1 + offset;
@@ -22,12 +24,14 @@ fn calculate_reflections(grid: &[&[u8]]) -> usize {
                 }
                 for x in 0..width {
                     if grid[lower][x] != grid[upper][x] {
-                        rows_equal = false;
-                        break;
+                        rows_differences += 1;
+                        if rows_differences > allowed_differences {
+                            break;
+                        }
                     }
                 }
             }
-            if rows_equal {
+            if rows_differences == allowed_differences {
                 return 100 * (y + 1);
             }
         }
@@ -35,14 +39,16 @@ fn calculate_reflections(grid: &[&[u8]]) -> usize {
 
     // Check vertical line reflection!
     for x in 0..(width - 1) {
-        let mut columns_equal = true;
+        let mut columns_differences = 0;
         for line in grid {
             if line[x] != line[x + 1] {
-                columns_equal = false;
-                break;
+                columns_differences += 1;
+                if columns_differences > allowed_differences {
+                    break;
+                }
             }
         }
-        if columns_equal {
+        if columns_differences <= allowed_differences {
             for offset in 1..=x {
                 let left = x - offset;
                 let right = x + 1 + offset;
@@ -51,12 +57,14 @@ fn calculate_reflections(grid: &[&[u8]]) -> usize {
                 }
                 for line in grid {
                     if line[left] != line[right] {
-                        columns_equal = false;
-                        break;
+                        columns_differences += 1;
+                        if columns_differences > allowed_differences {
+                            break;
+                        }
                     }
                 }
             }
-            if columns_equal {
+            if columns_differences == allowed_differences {
                 return x + 1;
             }
         }
@@ -69,7 +77,7 @@ pub fn day13_star1(input: &str) -> usize {
     let lines = &input.lines().map(str::as_bytes).collect_vec();
     lines
         .split(|bytes| bytes.is_empty())
-        .map(calculate_reflections)
+        .map(|grid| calculate_reflections(grid, 0))
         .sum()
 }
 
@@ -77,7 +85,7 @@ pub fn day13_star2(input: &str) -> usize {
     let lines = &input.lines().map(str::as_bytes).collect_vec();
     lines
         .split(|bytes| bytes.is_empty())
-        .map(calculate_reflections)
+        .map(|grid| calculate_reflections(grid, 1))
         .sum()
 }
 
@@ -129,6 +137,6 @@ mod tests {
     fn day13_star2_final_answer() -> Result<()> {
         let file = read_to_string(Path::new("inputs/day13.txt"))?;
         let actual = day13_star2(&file);
-        Ok(assert_eq!(actual, usize::MAX))
+        Ok(assert_eq!(actual, 30442))
     }
 }
