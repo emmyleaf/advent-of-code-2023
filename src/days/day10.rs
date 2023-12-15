@@ -1,16 +1,5 @@
+use crate::common::direction::Direction;
 use itertools::Itertools;
-
-#[derive(Clone, Copy, Debug)]
-enum Direction {
-    North,
-    East,
-    South,
-    West,
-}
-
-impl Direction {
-    const VALUES: [Self; 4] = [Self::North, Self::East, Self::South, Self::West];
-}
 
 const NORTH_CONNECTIONS: [u8; 3] = [b'|', b'7', b'F'];
 const EAST_CONNECTIONS: [u8; 3] = [b'-', b'7', b'J'];
@@ -22,7 +11,7 @@ fn trace_path(bytes: &[u8], width: usize) -> (usize, Vec<usize>) {
 
     // Find starting position and one connection to begin following
     let (start, _) = bytes.iter().find_position(|&&b| b == b'S').unwrap();
-    let start_dir = Direction::VALUES.into_iter().find(|&dir| match dir {
+    let start_dir = Direction::NWSE.into_iter().find(|&dir| match dir {
         Direction::North => {
             start > width && NORTH_CONNECTIONS.iter().any(|&p| p == bytes[start - width])
         }
