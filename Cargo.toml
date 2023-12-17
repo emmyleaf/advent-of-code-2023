@@ -6,6 +6,7 @@ edition = "2021"
 [dependencies]
 aho-corasick = "1"
 atoi = "2"
+bit-vec = "0.6"
 itertools = "0.12"
 lazy_static = "1"
 num = "0.4"
